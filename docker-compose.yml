@@ -1,1 +1,27 @@
+# 1. export APP_ENV=development
+# 2. docker-compose build
+# 3. docker-compose up
+
 version: '2'
+services:
+  node:
+    build:
+      context: .
+      dockerfile: node.dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - nodeapp-network
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=vWhjvDQX6plS3uY
+    ports:
+      - "5432:5432"
+    networks:
+      - nodeapp-network
+
+networks:
+  nodeapp-network:
+    driver: bridge
