@@ -1,6 +1,6 @@
 #Create Network: docker network create --driver bridge isolated_network
 #Build: docker build -t mousezero/node .
-#Setup Postgres: docker run --net=isolated_network --name my-postgres -d postgres
+#Setup Postgres: docker run --name some-postgres --net=isolated_network -p 5432:5432 -e POSTGRES_PASSWORD=vWhjvDQX6plS3uY -d postgres
 #Setup Node: docker run -d -p 8080:3000 --name my-node --net=isolated_network mousezero/node
 
 FROM node:latest
