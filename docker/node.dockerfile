@@ -2,7 +2,7 @@
 #Build: docker build -t mousezero/node .
 #Setup Postgres: docker run --name some-postgres --net=isolated_network -p 5432:5432 -e POSTGRES_PASSWORD=vWhjvDQX6plS3uY -d postgres
 #Setup Node: docker run -d -p 8080:3000 --name my-node --net=isolated_network mousezero/node
-FROM node:latest
+FROM node:7.8.0
 
 MAINTAINER Russell Murray
 
