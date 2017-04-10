@@ -2,20 +2,24 @@
 #Build: docker build -t mousezero/node .
 #Setup Postgres: docker run --name some-postgres --net=isolated_network -p 5432:5432 -e POSTGRES_PASSWORD=vWhjvDQX6plS3uY -d postgres
 #Setup Node: docker run -d -p 8080:3000 --name my-node --net=isolated_network mousezero/node
+
+####REQUIRED ENV####
+#NODE_ENV
+#  - production
+#  - development
 FROM node:7.8.0
 
 MAINTAINER Russell Murray
 
-ENV NODE_ENV=production
-ENV PORT=3000
+ARG type_env
 
 COPY . /var/node
 WORKDIR /var/node
 
-RUN chmod g+x ./docker/scripts/development/install.sh
-RUN ./docker/scripts/development/install.sh
+RUN chmod g+x ./docker/scripts/${type_env}/install.sh
+RUN ./docker/scripts/${type_env}/install.sh
 RUN npm install
 
-EXPOSE $PORT
+EXPOSE 3000
 
 ENTRYPOINT ["npm", "start"]
