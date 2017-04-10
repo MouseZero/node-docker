@@ -1,3 +1,4 @@
 #! /bin/bash
-apt-get update
-apt install -y tmux
+apt-get -qq update
+apt-get -y upgrade
+apt install -y tmux vim
